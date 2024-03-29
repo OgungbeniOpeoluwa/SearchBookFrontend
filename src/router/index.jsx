@@ -3,7 +3,7 @@ import BookCollections from "../features/BookCollections";
 
 export const  ROUTES= [
     {
-        path:"/register",
+        path:"",
         element :<Register/>
     },
     {
