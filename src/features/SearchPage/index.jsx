@@ -5,7 +5,6 @@ import axios from "axios";
 import print from "../../component/reuseable/global";
 const MainPage = ()=>{
     const[title,setTitle]= useState("")
-    const [userId,setUserId] = useState("")
 
     function refreshPage() {
         window.location.reload(false);
@@ -16,7 +15,6 @@ const MainPage = ()=>{
         e.preventDefault()
 
         const user = localStorage.getItem("user")
-        setUserId(user)
 
         const search = {
             userId: user,
@@ -26,8 +24,11 @@ const MainPage = ()=>{
         await axios.post('http://localhost:8080/api/v1/search', search)
             .then((response) => {
                 refreshPage()
+                print(response.data)
+
             })
-            .catch(error => console.log(error))
+            .catch(error =>
+                 alert(error.response.data.message))
     }
 
 

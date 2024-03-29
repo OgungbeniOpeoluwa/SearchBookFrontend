@@ -3,6 +3,7 @@ import FilledButton from "../../component/reuseable/button";
 import {useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import print from "../../component/reuseable/global";
 const Register = () => {
     document.body.style= 'background:hsl(600 20% 60%/80%)'
     const [formData,setFormData] = useState(
@@ -28,6 +29,7 @@ const Register = () => {
 
       await  axios.post('http://localhost:8080/api/v1/register', formData)
             .then(response => {
+                print(response.data.userId)
 
                 localStorage.setItem('user',response.data.userId)
 
@@ -47,16 +49,12 @@ const Register = () => {
 
                 <input type={"text"} placeholder={"Email"} className={style.inputs}
                        name={"email"}
-                    // value={formData.email}
                        onChange={(e) => handleInput(e)}/>
 
                 <input type={"text"} placeholder={"Password"} className={style.inputs}
-                    // value={formData.password}
                        name={"password"}
                        onChange={(e) => handleInput(e)}/>
-                <Link to={"/main"}>
                 <FilledButton text_color={"#000000"} text={"Register"} background_color={"#ffffff"}/>
-                </Link>
                 </form>
 
         </div>)
