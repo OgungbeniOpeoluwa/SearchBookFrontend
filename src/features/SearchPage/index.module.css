@@ -1,0 +1,12 @@
+.mainCont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+
+}
+.search{
+    height: 25px;
+    width: 250px;
+    border-radius: 10px;
+}

@@ -1,0 +1,37 @@
+.subjects{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.mainCont{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+    row-gap: 40px;
+
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.aboutBook{
+    border:none;
+    width: 450px;
+    border-radius: 20px;
+    background-color: dodgerblue;
+    color: white;
+
+}
+.aboutBook>div>p{
+    margin: 0;
+    color: white;
+    margin-left: 40px;
+}
+.aboutBook>h3{
+    margin: 0;
+    margin-left: 40px;
+
+}

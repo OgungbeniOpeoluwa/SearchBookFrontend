@@ -7,23 +7,25 @@ const MainPage = ()=>{
     const[title,setTitle]= useState("")
     const [userId,setUserId] = useState("")
 
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
 
         const user = localStorage.getItem("user")
         setUserId(user)
-        console.log(userId)
 
         const search = {
             userId: user,
             title: title
         }
-        console.log(search)
 
         await axios.post('http://localhost:8080/api/v1/search', search)
             .then((response) => {
-                print(response.data)
+                refreshPage()
             })
             .catch(error => console.log(error))
     }
@@ -34,14 +36,16 @@ const MainPage = ()=>{
     return(
         <div className={style.cont}>
         <div className={style.mainCont}>
-        <form onSubmit={(e)=>handleSubmit(e)} className={style.form}>
+        <form className={style.form}>
                 <input type={"text"}
                        name={"title"}
                        placeholder={"search"}
                        onChange={(e)=>setTitle(e.target.value)}
                        className={style.search}></input>
-            <FilledButton text={"Search"} text_color={"#ffffff"} background_color={"blue"}/>
     </form>
+            <form onSubmit={(e)=>handleSubmit(e)}>
+            <FilledButton text={"Search"} text_color={"dodgerblue"} background_color={"#ffffff"}/>
+            </form>
 </div>
 </div>)
 }
