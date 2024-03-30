@@ -2,9 +2,11 @@ import style from "./index.module.css"
 import FilledButton from "../../component/reuseable/button";
 import {useState} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import print from "../../component/reuseable/global";
+import BookCollections from "../BookCollections";
 const Register = () => {
+
     document.body.style= 'background:hsl(600 20% 60%/80%)'
     const [formData,setFormData] = useState(
         {
@@ -13,6 +15,7 @@ const Register = () => {
             password: "",
         }
     );
+    const navigate = useNavigate();
 
     const  handleInput = (e)=>{
         const {name,value} = e.target;
@@ -30,9 +33,9 @@ const Register = () => {
       await  axios.post('http://localhost:8080/api/v1/register', formData)
             .then(response => {
                 print(response.data.userId)
-
+                print("me")
                 localStorage.setItem('user',response.data.userId)
-
+                navigate("/main")
         }).catch(error=>{
             console.log(error)
         })
@@ -55,10 +58,9 @@ const Register = () => {
                        name={"password"}
                        onChange={(e) => handleInput(e)}/>
                 <FilledButton text_color={"#000000"} text={"Register"} background_color={"#ffffff"}/>
-                </form>
-
-        </div>)
-
+            </form>
+        </div>
+    )
 }
 
 export default Register
